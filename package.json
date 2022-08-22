@@ -1,6 +1,5 @@
 {
   "name": "ci-cd-githubactions",
-  "type": "module",
   "version": "1.0.0",
   "main": "index.js",
   "author": "Bruno Albuquerque",
