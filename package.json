@@ -1,24 +1,35 @@
 {
   "name": "ci-cd-githubactions",
-  "version": "0.1.0",
-  "private": true,
+  "type": "module",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Bruno Albuquerque",
+  "license": "MIT",
+  "dependencies": {
+    "eslint-plugin-prettier": "^4.0.0",
+    "next": "^12.1.6",
+    "node-fetch": "^3.2.5",
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0"
+  },
   "scripts": {
     "dev": "next dev",
-    "build": "rm -rf build && next export && mv ./out ./build",
+    "build": "rm -rf build && next build && next export && mv ./out ./build",
     "start": "next start",
-    "lint": "next lint"
-  },
-  "dependencies": {
-    "next": "12.2.5",
-    "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "lint": "next lint",
+    "lint:fix": "next lint --fix",
+    "deploy:prod": "yarn deploy:staging --prod",
+    "deploy:staging": "yarn build && vercel ./build --confirm --no-clipboard --token=$VERCEL_TOKEN",
+    "deploy:preview": "node ./scripts/pullRequestPreview",
+    "test:e2e:open": "cypress open",
+    "test:e2e": "cypress run --config-file=cypress.config.js"
   },
   "devDependencies": {
-    "@types/node": "18.7.9",
-    "@types/react": "18.0.17",
-    "@types/react-dom": "18.0.6",
-    "eslint": "8.22.0",
-    "eslint-config-next": "12.2.5",
-    "typescript": "4.7.4"
+    "cypress": "^10.0.2",
+    "eslint": "8.17.0",
+    "eslint-config-next": "12.1.6",
+    "eslint-config-prettier": "^8.5.0",
+    "prettier": "^2.6.2",
+    "vercel": "^25.0.0"
   }
 }
